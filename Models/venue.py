@@ -1,9 +1,6 @@
-# models/venue.py
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
+from Models.base import Base
 
 class Venue(Base):
     __tablename__ = 'venues'
@@ -20,8 +17,5 @@ class Venue(Base):
     def __str__(self):
         return f"{self.title} in {self.city}"
 
-
     def bands(self):
-        # Use the concerts relationship to get associated bands
         return [concert.band for concert in self.concerts]
-

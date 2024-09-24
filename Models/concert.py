@@ -1,9 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
-
+from Models.base import Base
 
 class Concert(Base):
     __tablename__ = 'concerts'
@@ -23,9 +20,7 @@ class Concert(Base):
         return f"Concert on {self.date} by {self.band.name} at {self.venue.title}, {self.venue.city}"
 
     def hometown_show(self):
-        # Check if the concert is in the band's hometown
         return self.venue.city == self.band.hometown
 
     def introduction(self):
-        # Provide an introduction message
         return f"Hello {self.venue.city}!!!!! We are {self.band.name} and we're from {self.band.hometown}"

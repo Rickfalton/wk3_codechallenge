@@ -1,15 +1,17 @@
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from Models.base import Base
 from Models.band import Band
 from Models.venue import Venue
 from Models.concert import Concert
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 
+# Create the engine
+engine = create_engine('sqlite:///models/concerts.db')
 
-engine = create_engine('sqlite:///Models/concerts.db')
-Base = declarative_base()
-# Create tables (migrations should be done separately)
+# Create all tables
 Base.metadata.create_all(engine)
+
+# Set up the session
 Session = sessionmaker(bind=engine)
 session = Session()
 
@@ -33,7 +35,7 @@ session.commit()
 
 # Query the database and print the details
 band = session.query(Band).first()
-print(f'The band goes by the name:  {band.name}')
+print(f'The band goes by the name: {band.name}')
 
 # Get all concerts of the band
 for concert in band.concerts:
