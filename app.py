@@ -6,7 +6,7 @@ from Models.venue import Venue
 from Models.concert import Concert
 
 # Create the engine
-engine = create_engine('sqlite:///models/concerts.db')
+engine = create_engine('sqlite:///Models/concerts.db')
 
 # Create all tables
 Base.metadata.create_all(engine)
