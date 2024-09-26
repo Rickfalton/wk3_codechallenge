@@ -20,7 +20,9 @@ class Concert(Base):
         return f"Concert on {self.date} by {self.band.name} at {self.venue.title}, {self.venue.city}"
 
     def hometown_show(self):
+        """Checks if the concert is in the band's hometown."""
         return self.venue.city == self.band.hometown
 
     def introduction(self):
+        """Returns an introduction string for the concert."""
         return f"Hello {self.venue.city}!!!!! We are {self.band.name} and we're from {self.band.hometown}"
